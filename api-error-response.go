@@ -66,7 +66,7 @@ type ErrorResponse struct {
 //
 // For example:
 //
-//   import s3 "github.com/minio/minio-go/v7"
+//   import s3 "github.com/elagergren-spideroak/minio-go/v7"
 //   ...
 //   ...
 //   reader, stat, err := s3.GetObject(...)
@@ -98,7 +98,7 @@ func (e ErrorResponse) Error() string {
 // Common string for errors to report issue location in unexpected
 // cases.
 const (
-	reportIssue = "Please report this issue at https://github.com/minio/minio-go/issues."
+	reportIssue = "Please report this issue at https://github.com/elagergren-spideroak/minio-go/issues."
 )
 
 // xmlDecodeAndBody reads the whole body up to 1MB and

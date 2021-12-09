@@ -21,14 +21,14 @@ import (
 	"bufio"
 	"bytes"
 	"context"
+	"encoding/json"
 	"encoding/xml"
 	"net/http"
 	"net/url"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
-	"github.com/minio/minio-go/v7/pkg/notification"
-	"github.com/minio/minio-go/v7/pkg/s3utils"
+	"github.com/elagergren-spideroak/minio-go/v7/pkg/notification"
+	"github.com/elagergren-spideroak/minio-go/v7/pkg/s3utils"
 )
 
 // SetBucketNotification saves a new bucket notification with a context to control cancellations and timeouts.
@@ -103,7 +103,6 @@ func (c *Client) getBucketNotification(ctx context.Context, bucketName string) (
 		return notification.Configuration{}, err
 	}
 	return processBucketNotificationResponse(bucketName, resp)
-
 }
 
 // processes the GetNotification http response from the server.
@@ -207,7 +206,6 @@ func (c *Client) ListenBucketNotification(ctx context.Context, bucketName, prefi
 			// Use a higher buffer to support unexpected
 			// caching done by proxies
 			bio.Buffer(notificationEventBuffer, notificationCapacity)
-			var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 			// Unmarshal each line, returns marshaled values.
 			for bio.Scan() {
